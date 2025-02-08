@@ -30,14 +30,11 @@ class Message extends Model
         return $date->isToday() ? 'Today' : ($date->isYesterday() ? 'Yesterday' : $date->format('d M Y'));
     }
 
-    // Boot method for model events
     protected static function boot()
     {
         parent::boot();
-
-        // Automatically set created_at during creation
         static::creating(function ($model) {
-            $model->created_at = Carbon::now(); // Set the current time
+            $model->created_at = Carbon::now();
         });
     }
 
